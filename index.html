@@ -6,17 +6,48 @@
     <title>Weather App</title>
   </head>
   <body>
-    <header className="header">
-      <div className="header-left">
+    <header class="header">
+      <div class="header-left">
         <img
-          className="weather-icon large"
+          class="weather-icon large"
           src="icons/sun.svg"
           alt="weather icon"
           data-current-icon
         />
-        <span data-current-temp>31</span>
+        <span data-current-temp>31</span>&deg;
       </div>
-      <div className="header-right"></div>
+      <div class="header-right">
+        <div class="info-group">
+          <div class="label">High</div>
+          <div><span data-current-high>32</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">FL High</div>
+          <div><span data-current-fl-high>25</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">Wind</div>
+          <div>
+            <span data-current-wind>14</span>
+            <span class="value-sub-info">mph</span>
+          </div>
+        </div>
+        <div class="info-group">
+          <div class="label">Low</div>
+          <div><span data-current-low>8</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">FL Low</div>
+          <div><span data-current-fl-low>12</span>&deg;</div>
+        </div>
+        <div class="info-group">
+          <div class="label">Precip</div>
+          <div>
+            <span data-current-precip>4.5</span>
+            <span class="value-sub-info">in</span>
+          </div>
+        </div>
+      </div>
     </header>
     <script type="module" src="/main.js"></script>
   </body>
