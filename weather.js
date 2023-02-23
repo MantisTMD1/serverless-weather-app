@@ -12,16 +12,18 @@ export function getWeather(lat, lon, timezone) {
         }
     )
         .then(({ data }) => {
+
             return {
+
                 current: parseCurrentWeather(data),
-                // daily: parseDailyWeather(data),
-                // hourly: parseHourlyWeather(data)
+                daily: parseDailyWeather(data),
+                hourly: parseHourlyWeather(data)
 
             }
         })
 }
 
-// parses through data to give me clean readable objects  
+// parses through current weather data to give me clean readable objects  
 function parseCurrentWeather({ current_weather, daily, hourly }) {
     const { temperature: currentTemp, windspeed: windSpeed,
         weathercode: iconCode } = current_weather
@@ -47,4 +49,31 @@ function parseCurrentWeather({ current_weather, daily, hourly }) {
         precip: Math.round(precip * 100) / 100,
         iconCode,
     }
+}
+
+// parses through daily weather data to give me clean readable objects  
+function parseDailyWeather({ daily }) {
+    return daily.time.map((time, index) => {
+        return {
+            timestamp: time * 1000,
+            iconCode: daily.weathercode[index],
+            maxTemp: Math.round(daily.temperature_2m_max[index]),
+        }
+    })
+
+}
+
+// parses through hourly weather data to give me clean readable objects  
+function parseHourlyWeather({ hourly, current_weather }) {
+    return hourly.time.map((time, index) => {
+        return {
+            timestamp: time * 1000,
+            iconCode: hourly.weathercode[index],
+            temp: Math.round(hourly.apparent_temperature[index]),
+            feelslike: Math.round(hourly.temperature_2m[index]),
+            windspeed: Math.round(hourly.windspeed_10m[index]),
+            precip: Math.round(hourly.precipitation[index] * 100) / 100,
+        }
+    }).filter(({ timestamp }) =>
+        timestamp >= current_weather.time * 1000)
 }
