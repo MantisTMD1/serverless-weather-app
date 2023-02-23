@@ -2,7 +2,7 @@ import "./style.css";
 import { getWeather } from "./weather.js";
 import { ICON_MAP } from "./iconMap.js";
 
-// this function gets user location
+// function gets user location using geo location api
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError)
 
 function positionSuccess({ coords }) {

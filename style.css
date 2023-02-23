@@ -19,7 +19,7 @@ padding: 0.5rem;
 letter-spacing: 0.03rem;
 }
 .blurred {
-  filter: blur(3px);
+  filter: blur(4px);
   overflow: hidden;
 }
 .header {
