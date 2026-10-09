@@ -15,15 +15,9 @@ function positionSuccess({ coords }) {
         });
 }
 
-function positionError(){
-    "There was an error finding your location. Please allow us to use your location and refresh the page. "
+function positionError() {
+    alert("There was an error finding your location. Please allow us to use your location and refresh the page.");
 }
-getWeather(44, 93, Intl.DateTimeFormat().resolvedOptions().timeZone)
-    .then(renderWeather)
-    .catch((e) => {
-        console.log(e);
-        alert("Error retrieving weather data.");
-    });
 
 // calls rendered data
 function renderWeather({ current, daily, hourly }) {
